@@ -3,11 +3,11 @@ const path = require('path');
 
 const jsonPath = './data/tools.json';
 let tools;
-try { tools = require(path.resolve(jsonPath)); } catch(e) { } // eslint-disable-line
+try { tools = require(path.resolve(jsonPath)); } catch(e) { tools = {}; } 
 const jsonDump = () => fs.writeFileSync(jsonPath, JSON.stringify(tools, null, 2), 'utf8');
 
-module.exports.add = function(name, link, tags) {
-	tools[name] = { link: link, tags: tags };
+module.exports.add = function(name, link, desc, tags) {
+	tools[name] = { link: link, desc: desc, tags: tags };
 	jsonDump();
 };
 
