@@ -10,10 +10,14 @@ function loadCommands(dirPath) {
 	for(const de of dirents.filter(de => de.isDirectory())) // recursively load directories
 		loadCommands(path.join(dirPath, de.name));
 	for(const de of dirents.filter(de => de.isFile())) {
-		const cmd = require(path.resolve(dirPath, de.name));
-		commands[cmd.alias[0]] = cmd;
-		for(const alias of cmd.alias)
-			resolveCommand[alias] = cmd;
+		try {
+			const cmd = require(path.resolve(dirPath, de.name));
+			commands[cmd.alias[0]] = cmd;
+			for(const alias of cmd.alias)
+				resolveCommand[alias] = cmd;
+		} catch(e) {
+			console.log(`Failed importing command: ${de.name}`);
+		}
 	}
 }
 loadCommands('./commands');
