@@ -34,3 +34,19 @@ client.on('message', async message => {
 
 		require('./commands/ping.js').exec(message);
 });
+
+global.embedFooter = { text: 'saveliy gandon' };
+
+global.errorEmbed = (text, title=true) => {return {
+	title: title ? 'Error occured' : null,
+	description: `\`\`\`diff\n- ${text}\n\`\`\``,
+	color: '#ff3333',
+	footer: global.embedFooter
+};};
+
+global.successEmbed = (text, title=true) => {return {
+	title: title ? 'Success!' : null,
+	description: `\`\`\`diff\n+ ${text}\n\`\`\``,
+	color: '#00ff33',
+	footer: global.embedFooter
+};};
