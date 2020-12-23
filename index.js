@@ -15,8 +15,9 @@ function loadModules(dirPath) {
 		loadModules(path.join(dirPath, de.name));
 	for(const de of dirents.filter(de => de.isFile())) {
 		const mod = require(path.resolve(dirPath, de.name));
-		for(const eventName in mod.events)
-			client.on(eventName, mod.events[eventName]);
+		if(mod.events)
+			for(const eventName in mod.events)
+				client.on(eventName, mod.events[eventName]);
 	}
 }
 
