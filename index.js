@@ -8,11 +8,11 @@ global.client = new Discord.Client({ forceFetchUsers: true });
 const client = global.client;
 
 /* ------- Module loader ------- */
-async function loadModules(dirPath) {
+function loadModules(dirPath) {
 	const dirents = fs.readDirSync(dirPath);
 	const dirs = dirents.filter(de => de.isDirectory());
 	for(const de of dirs) // recursively load directories
-		await loadModules(path.join(dirPath, de.name));
+		loadModules(path.join(dirPath, de.name));
 	for(const de of dirents.filter(de => de.isFile())) {
 		const mod = require(path.resolve(dirPath, de.name));
 		for(const eventName in mod.events)
@@ -24,7 +24,7 @@ async function loadModules(dirPath) {
 client.login(process.env.BOT_TOKEN);
 
 client.on('ready', async () => {
-	await loadModules('./modules');
+	loadModules('./modules');
 	console.log('Bot is online!');
 });
 
