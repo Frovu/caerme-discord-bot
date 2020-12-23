@@ -3,10 +3,10 @@ const confirm = require('../../functions/confirm');
 const tools = require('../../modules/toollist');
 
 module.exports = {
-	alias: [ 'add', 'newtool', 'addtool', 'tool' ],
+	alias: [ 'add', 'newtool', 'addtool' ],
 	help: {
 		desc: 'Add new tool to registry',
-		usage: '$ tool_name'
+		usage: '$ <tool name>'
 	},
 	exec: async function(message, args) {
 		const tool = args.join(' ');
