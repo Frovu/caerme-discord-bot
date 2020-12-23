@@ -1,0 +1,25 @@
+{
+  "name": "caerme-discord-bot",
+  "version": "1.0.0",
+  "description": "Discord.js bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Frovu/caerme-discord-bot.git"
+  },
+  "keywords": [
+    "discord.js"
+  ],
+  "author": "Frovy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Frovu/caerme-discord-bot/issues"
+  },
+  "homepage": "https://github.com/Frovu/caerme-discord-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1"
+  }
+}
