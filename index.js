@@ -9,7 +9,7 @@ const client = global.client;
 
 /* ------- Module loader ------- */
 function loadModules(dirPath) {
-	const dirents = fs.readDirSync(dirPath);
+	const dirents = fs.readdirSync(dirPath, {withFileTypes: true});
 	const dirs = dirents.filter(de => de.isDirectory());
 	for(const de of dirs) // recursively load directories
 		loadModules(path.join(dirPath, de.name));
