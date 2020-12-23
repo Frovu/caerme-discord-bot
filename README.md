@@ -1,5 +1,12 @@
 
-
+### Module structure:
+```js
+module.exports = {
+	events: {
+		"eventName": async ( ... ) => { ... }
+	}
+}
+```
 
 ### Command structure:
 ```js
