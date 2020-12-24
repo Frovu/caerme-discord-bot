@@ -8,19 +8,15 @@ module.exports = {
 	},
 	exec: async function(message, args) {
 		const filtered = tools.list(args);
-		const embed = {
-			title: `Tools query: \`${args.join(', ')||'all'}\``,
-			description:  Object.keys(filtered).length === 0 ? '**Nothing found**' : '',
-			fields: [],
-			color: Object.keys(filtered).length && 0x00ffff
-		};
+		let i = 0; let desc = '';
 		for(const t in filtered) {
 			const tool = filtered[t];
-			embed.fields.push({
-				name: `${t}`,
-				value: `${tool.tags.map(tg => `\`${tg}\``).join(' ')}\n[link](${tool.url})\n${tool.desc}`
-			});
+			desc += `**${++i}. [${t}](${tool.url})**\n${tool.tags.map(tg => `\`${tg}\``).join(' ')}\n${tool.desc}\n`;
 		}
-		await message.channel.send({embed: embed});
+		await message.channel.send({embed: {
+			title: `Tools query: \`${args.join(', ')||'all'}\``,
+			description:  desc || '**Nothing found**',
+			color: desc && 0x00ffff
+		}});
 	}
 };
