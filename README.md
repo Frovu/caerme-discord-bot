@@ -21,3 +21,11 @@ module.exports = {
 	}
 }
 ```
+
+### .env example:
+
+```
+BOT_TOKEN=
+PREFIX=.
+AUTHOR=
+```
