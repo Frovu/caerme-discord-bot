@@ -16,6 +16,19 @@ module.exports.remove = function(name) {
 	jsonDump();
 };
 
+module.exports.exists = function(name) {
+	return Object.keys(tools).find(k => k.toLowerCase() === name.toLowerCase());
+};
+
+module.exports.get = function(name) {
+	return tools[name];
+};
+
+module.exports.change = function(name, new_entry) {
+	tools[name] = new_entry;
+	jsonDump();
+};
+
 module.exports.list = function(tags) {
 	if(tags.length <= 0) return tools;
 	const filtered = {};
