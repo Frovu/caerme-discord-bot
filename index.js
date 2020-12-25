@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+global.log = require('./functions/logging');
 
 require('dotenv').config(); // read config from .env file
 const Discord = require('discord.js');
@@ -26,13 +27,7 @@ client.login(process.env.BOT_TOKEN);
 
 client.on('ready', async () => {
 	loadModules('./modules');
-	console.log('Bot is online!');
-});
-
-client.on('message', async message => {
-	if(message.content === 'ping')
-
-		require('./commands/ping.js').exec(message);
+	global.log('Bot is online!');
 });
 
 global.embedFooter = { text: 'saveliy gandon' };
