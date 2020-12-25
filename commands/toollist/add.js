@@ -12,6 +12,8 @@ module.exports = {
 		const tool = args.join(' ');
 		if(!tool)
 			return await message.channel.send({embed: global.errorEmbed('Enter name for the tool')});
+		if(tools.exists(tool))
+			return await message.channel.send({embed: global.errorEmbed('Tool already exists')});
 		const desc = await ask(message, 'Please enter brief tool description:');
 		if(!desc) return;
 		const link = await ask(message, 'Please enter tool url:');
