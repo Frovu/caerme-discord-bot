@@ -16,7 +16,7 @@ function loadCommands(dirPath) {
 			for(const alias of cmd.alias)
 				resolveCommand[alias] = cmd;
 		} catch(e) {
-			console.log(`Failed importing command: ${de.name}`);
+			global.log(`Failed importing command: ${de.name}`);
 		}
 	}
 }
@@ -27,8 +27,12 @@ async function handleMessage(message) {
 	// if(message.author.bot) return;
 	const argv = message.content.slice(prefix.length).split(/\n|\r| +/g);
 	const command = resolveCommand[argv[0]];
-	if(command)
+	if(!command) return;
+	try {
 		command.exec(message, argv.slice(1));
+	} catch (e) {
+		global.log(`Exception in ${argv[0]}: ${e.stack}`);
+	}
 }
 
 module.exports.getCommands = () => commands;
