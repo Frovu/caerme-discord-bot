@@ -1,4 +1,5 @@
 const tools = require('../../modules/toollist');
+const send = require('../../functions/sendEmbed');
 
 module.exports = {
 	alias: [ 'tools', 'list', 'tool', 'show' ],
@@ -13,10 +14,10 @@ module.exports = {
 			const tool = filtered[t];
 			desc += `**${++i}. [${t}](${tool.url})**\n${tool.tags.map(tg => `\`${tg}\``).join(' ')}\n${tool.desc}\n`;
 		}
-		await message.channel.send({embed: {
+		await send(message.channel, {
 			title: `Tools query: \`${args.join(', ')||'all'}\``,
 			description:  desc || '**Nothing found**',
 			color: desc && 0x00ffff
-		}});
+		});
 	}
 };
